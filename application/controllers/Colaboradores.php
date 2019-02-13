@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Colaboradores extends CI_Controller{
-
+class Colaboradores extends CI_Controller
+{
     /**
-     * Na ausência de de um método do controlador, redirecionar para a tela de empresas
+     * Na ausência de um método do controlador, redirecionar para a tela de empresas
      */
     public function index()
     {
@@ -61,6 +61,28 @@ class Colaboradores extends CI_Controller{
         
         //Carrega a view passando os dados da query
         $this->load->view("Colaboradores/colaboradoresaltera", $dados);
+
+    }
+
+    /**
+     * Carrega a tela de apagar um colaborador a partir do seu id
+     */
+    public function apagar()
+    {
+        //Pega o id do colaborador da URL
+        $id = $this->uri->segment(5);
+
+        //Se o id for nulo, redireciona para a página inicial
+        if(is_null($id))
+            redirect();
+
+        //Utitiliza o método getById para obter as informações do colaborador a partir do seu id
+        $resultado = $this->ColaboradoresModel->getById($id);
+
+        $dados['colaboradorid'] = $resultado;        
+        
+        //Carrega a view passando os dados da query
+        $this->load->view("Colaboradores/colaboradoresdeleta", $dados);
 
     }
 
@@ -124,7 +146,7 @@ class Colaboradores extends CI_Controller{
             if(!$status){
 				$this->session->set_flashdata('error', 'Não foi possível cadastrar o colaborador');
 			}else{
-                //Pega o id a partir do forulário
+                //Pega o id da empresa a partir do forulário
                 $id = $this->input->post('empresa_id');
                 
                 //Utiliza o método getByIdEmpresa para listar os colaboradores dela a partir do seu id
@@ -148,14 +170,6 @@ class Colaboradores extends CI_Controller{
      */
     public function atualizar()
     {
-        //Pega o id do colaborador e da empresa a partir da URL
-        $idcolab = $this->uri->segment(5);
-        $idempresa = $this->uri->segment(4);
-
-        //Se ambos forem nulos, redireciona para página inicial
-        if(is_null($idcolab) || is_null($idempresa))
-            redirect();
-
         //Executa o processo de validação do formulário
         $validacao = self::validar('update');
 
@@ -166,6 +180,7 @@ class Colaboradores extends CI_Controller{
         {
             //Recupera os dados do formulário
             $colaborador = $this->input->post();
+            $idcolab = $colaborador['id_colaborador'];
 
             //Atualiza os dados do colaborador a partir do seu id e obtem o status da operação
             $status = $this->ColaboradoresModel->atualizar($idcolab, $colaborador);
@@ -177,6 +192,7 @@ class Colaboradores extends CI_Controller{
 				$this->session->set_flashdata('error', 'Não foi possível alterar as informações.');
 			}else{
                 //Faz a consulta dos colaboradores da empresa através de getByIdEmpresa
+                $idempresa = $colaborador['empresa_id'];
                 $dados['colaboradores'] = $this->ColaboradoresModel->getByIdEmpresa($idempresa);
                 $dados['success'] = 'Informações alteradas com sucesso.';
                 //Carrega a tela da lista dos colaboradores com os dados da consulta e a mensagem de sucesso da operação
@@ -197,23 +213,20 @@ class Colaboradores extends CI_Controller{
      */
     public function excluir()
     {
-        //Recupera o id do colaborador e da empresa pela URL;
-        //Eu sei que não é a melhor forma
-        $idcolab = $this->uri->segment(5);        
-        $idempresa = $this->uri->segment(4);
+        //Pega o id do colaborador a partir do formulário
+        $colaborador = $this->input->post();
 
-        //Se ambos forem nulos, redireciona para a página inicial;
-		if(is_null($idcolab) || is_null($idempresa))
-			redirect();
-        
+        $idcolab = $colaborador['id_colaborador'];
+
         //Deleta o colaborador a partir do seu id e obtem o status da operação
 		$status = $this->ColaboradoresModel->excluir($idcolab);        
         
+        $idempresa = $colaborador['empresa_id'];
         //Obtem a lista de colaboradores da empresa para gerar a tela de lista dos colaboradores
         $resultado = $this->ColaboradoresModel->getByIdEmpresa($idempresa);
         $dados['colaboradores'] = $resultado;
 
-        ////Checa o status da operação
+        //Checa o status da operação
         //Se bem sucedida, informa ao usuário
         //Caso contrário, também informa
 		if($status){
