@@ -45,6 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="<?=base_url('')?>">Início</a></li>
                 <li><a href="<?=base_url('Empresas/listar_empresas')?>">Empresas</a></li>
+                <li><a href="<?=base_url('Relatorios')?>">Relatórios</a></li>
                 <li><a href="<?=base_url('Empresas/cadastrar')?>"><span class="rounded bg-primary py-2 px-3 text-white">Cadastre-se</span></a></li>
               </ul>
             </nav>

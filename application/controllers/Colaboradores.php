@@ -73,7 +73,7 @@ class Colaboradores extends CI_Controller{
         switch($operacao){
 			case 'insert':
                 $rules['nome'] = array('trim', 'required');
-                $rules['cpf'] = array('trim', 'required', 'exact_length[11]', 'numeric');
+                $rules['cpf'] = array('trim', 'required', 'exact_length[11]', 'numeric', 'is_unique[colaborador.CPF]');
                 $rules['email'] = array('trim', 'valid_email');
                 $rules['sexo'] = array('trim', 'required');
 				break;
@@ -85,7 +85,7 @@ class Colaboradores extends CI_Controller{
 				break;
 			default:
                 $rules['nome'] = array('trim', 'required');
-                $rules['cpf'] = array('trim', 'required', 'exact_length[11]', 'numeric');
+                $rules['cpf'] = array('trim', 'required', 'exact_length[11]', 'numeric', 'is_unique[colaborador.CPF]');
                 $rules['email'] = array('trim', 'valid_email');
                 $rules['sexo'] = array('trim', 'required');
 				break;

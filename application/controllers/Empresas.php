@@ -57,7 +57,7 @@ class Empresas extends CI_Controller{
         switch($operacao){
 			case 'insert':
                 $rules['nome'] = array('trim', 'required');
-                $rules['cnpj'] = array('trim', 'required', 'exact_length[14]', 'numeric');
+                $rules['cnpj'] = array('trim', 'required', 'exact_length[14]', 'numeric', 'is_unique[empresa.CNPJ]');
 				$rules['email'] = array('trim', 'valid_email');
 				break;
 			case 'update':
@@ -67,7 +67,7 @@ class Empresas extends CI_Controller{
 				break;
 			default:
                 $rules['nome'] = array('trim', 'required');
-                $rules['cnpj'] = array('trim', 'required', 'exact_length[14]', 'numeric');
+                $rules['cnpj'] = array('trim', 'required', 'exact_length[14]', 'numeric', 'is_unique[empresa.CNPJ]');
 				$rules['email'] = array('trim', 'valid_email');
 				break;
 		}

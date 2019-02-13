@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
+    <link rel="stylesheet" href="'https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500')"> 
     <link rel="stylesheet" href="<?=base_url('assets/fonts/icomoon/style.css')?>">
 
     <link rel="stylesheet" href="<?=base_url('assets/css/bootstrap.min.css')?>">
@@ -46,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="<?=base_url('')?>">Início</a></li>
                 <li><a href="<?=base_url('Empresas/listar_empresas')?>">Empresas</a></li>
+                <li><a href="<?=base_url('Relatorios')?>">Relatórios</a></li>
                 <li><a href="<?=base_url('Empresas/cadastrar')?>"><span class="rounded bg-primary py-2 px-3 text-white">Cadastre-se</span></a></li>
               </ul>
             </nav>
@@ -64,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Painel principal -->
 
-    <div class="unit-5 overlay" style="background-image: url(<?=base_url('assets/images/img_2.jpg')?>);">
+    <div class="unit-5 overlay" style="background-image: url(<?=base_url('assets/images/hero_bg_3.jpg')?>);">
       <div class="container text-center">
         <h2 class="mb-0">Cadastrar colaborador</h2>
         <p class="mb-0 unit-6"><a href="<?=base_url('')?>">Início</a> <span class="sep">></span> <a href="<?=base_url('Empresas/visualizar/' . $this->uri->segment(4))?>">Empresa</a> <span class="sep">></span> <a href="<?=base_url('Colaboradores/listar_colaboradores/' .$this->uri->segment(3) . '/'. $this->uri->segment(4))?>">Lista de colaboradores</a> <span class="sep">></span> <span>Cadastrar colaborador</span></p>

@@ -30,11 +30,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   
   <div class="site-wrap">
 
-    <!-- Menu -->   
-    
+    <!-- Menu -->
+
     <header class="site-navbar py-1" role="banner">
 
-      <div class="container">
+    <div class="container">
         <div class="row align-items-center">
           
           <div class="col-6 col-xl-2">
@@ -62,77 +62,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       
     </header>
-    
+
     <!-- Painel principal -->
 
-    <div class="unit-5 overlay" style="background-image: url(<?=base_url('assets/images/hero_bg_3.jpg')?>);">
+    <div class="unit-5 overlay" style="background-image: url(<?=base_url('assets/images/hero_bg_4.jpg')?>);">
       <div class="container text-center">
-        <h2 class="mb-0">Lista de colaboradores</h2>
-        <p class="mb-0 unit-6"><a href="<?=base_url('')?>">Início</a> <span class="sep">></span> <a href="<?=base_url('Empresas/visualizar/' . $this->uri->segment(4))?>">Empresa</a> <span class="sep">></span><span>Lista de colaboradores</span></p>
+        <h2 class="mb-0">Relatórios</h2>
+        <p class="mb-0 unit-6"><a href="<?=base_url('')?>">Início</a> <span class="sep">></span> <span>Relatórios</span></p>
       </div>
     </div>
 
-    <!-- Lista de colaboradores -->
+    <!-- Opções de relatórios -->
 
     <div class="site-section bg-light">
       <div class="container">
         <div class="row justify-content-start text-left mb-5">
             <div class="col-md-9" data-aos="fade">
-            <?php if (isset($success)): ?>
-                <span class="text-gray-500"><?=$success?></span>
-            <?php endif; ?>
-            <?php if (isset($insuccess)): ?>
-                <span class="text-gray-500"><?=$insuccess?></span>
-            <?php endif; ?>
-                <h2 class="font-weight-bold text-black"><?= urldecode($this->uri->segment(3))?></h2>
+                <h2 class="font-weight-bold text-black">Gerar relatórios</h2>
             </div>
         </div>
 
-        <div>
-        <p class="mt-5"><a href="<?=base_url('Colaboradores/cadastrar_colaboradores/' . $this->uri->segment(3) . '/' . $this->uri->segment(4))?>" class="btn btn-primary  py-2 px-4">Cadastrar</a>
-        </div>
-        
-        <?php if ($colaboradores == FALSE): ?>
-            <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                    <h2 class="mr-3 text-black h4">Nenhum colaborador encontrado</h2>
-               </div>
-            </div>
-        <?php else: ?>
-            
-            <div class="row" data-aos="fade">
+        <div class="row" data-aos="fade">
             <div class="col-md-12">
-            <section class="panel">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Sexo</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php foreach($colaboradores as $c): ?>
-                  <tr>
-                    <td><?= $c->nome; ?></td>
-                    <td><?= $c->CPF; ?></td>
-                    <td><?= $c->email; ?></td>
-                    <td><?= $c->sexo; ?></td>
-                    <td align="center">
-                        <a href="<?=base_url('Colaboradores/editar/' . $this->uri->segment(3)  . '/' . $this->uri->segment(4) .  '/' . $c->Id_colaborador)?>" class="btn btn-secondary  py-2 px-4">Editar</a>
-                        <a href="<?=base_url('Colaboradores/excluir/' . $this->uri->segment(3)  . '/' . $this->uri->segment(4) . '/' . $c->Id_colaborador)?>" class="btn btn-black  py-2 px-4">Excluir</a></p>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-                </tbody>
-              </table>
-            </section>
-            </div>
-            </div>
 
-        <?php endif; ?>
+                <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+                    <div class="mb-4 mb-md-0 mr-5">
+                        <div class="job-post-item-header d-flex align-items-center">
+                            <h2 class="mr-3 text-black h4">Todas as empresas cadastradas</h2>
+                        </div>
+                    </div>
+
+                    <div class="ml-auto">
+                        <a href="<?=base_url('Relatorios/listar_empresas')?>" target="_blank" class="btn btn-primary py-2">Ver</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" data-aos="fade">
+            <div class="col-md-12">
+
+                <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+                    <div class="mb-4 mb-md-0 mr-5">
+                        <div class="job-post-item-header d-flex align-items-center">
+                            <h2 class="mr-3 text-black h4">Todas as colaboradoras cadastradas</h2>
+                        </div>
+                    </div>
+
+                    <div class="ml-auto">
+                        <a href="<?=base_url('Relatorios/listar_colaboradoras/')?>" target="_blank" class="btn btn-primary py-2">Ver</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
       </div>
     </div>    
 
@@ -141,7 +126,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <footer class="site-footer">
         <div class="container">
           
-  
           <div class="row">
             <div class="col-lg-3">
               <h3 class="footer-heading mb-4">Contate-nos</h3>

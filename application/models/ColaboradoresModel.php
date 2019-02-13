@@ -12,7 +12,7 @@ class ColaboradoresModel extends CI_Model {
         $this->table = 'colaborador';
     }
     
-    public function getByIdEmpresa($id)
+    function getByIdEmpresa($id)
     {   
         if(is_null($id))
             return false;
@@ -36,7 +36,7 @@ class ColaboradoresModel extends CI_Model {
         }
     }
 
-    public function inserir($data) 
+    function inserir($data) 
     {
         if(!isset($data))
             return false;
@@ -55,5 +55,12 @@ class ColaboradoresModel extends CI_Model {
         if(is_null($id))
             return false;
         return $this->db->delete($this->table, array('Id_colaborador' => $id));
+    }
+
+    function getColaboradoras()
+    {
+        $resultado = $this->db->get_where($this->table, array('sexo' => 'Feminino'))->result();
+
+        return $resultado;
     }
 }

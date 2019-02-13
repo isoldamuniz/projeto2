@@ -12,7 +12,7 @@ class EmpresasModel extends CI_Model {
         $this->table = 'empresa';
     }
     
-    public function getAll()
+    function getAll()
     {        
         $this->db->select("Id_empresa, nome, CNPJ, email");
 
@@ -35,7 +35,7 @@ class EmpresasModel extends CI_Model {
         }
       }
 
-    public function inserir($data) 
+    function inserir($data) 
     {
         if(!isset($data))
             return false;
